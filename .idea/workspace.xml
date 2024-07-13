@@ -5,18 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a422db0-5065-4680-9e8a-1926cfed70fa" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Classification/Decision_Tree.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/pythonProject9.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clustering/Clustering_Agglomerative.py" beforeDir="false" afterPath="$PROJECT_DIR$/clustering/Clustering_Agglomerative.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clustering/Clustering_DBSCAN.py" beforeDir="false" afterPath="$PROJECT_DIR$/clustering/Clustering_DBSCAN.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clustering/Clustering_K_means.py" beforeDir="false" afterPath="$PROJECT_DIR$/clustering/Clustering_K_means.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clustering/Clustering_Optic.py" beforeDir="false" afterPath="$PROJECT_DIR$/clustering/Clustering_Optic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clustering/Clustering_methods.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +15,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -39,7 +32,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Clustering__K__means",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/Users/FATEME/PycharmProjects/pythonProject9/Classification",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -101,7 +94,7 @@
       <workItem from="1720778424567" duration="39000" />
       <workItem from="1720813518692" duration="646000" />
       <workItem from="1720882803094" duration="5160000" />
-      <workItem from="1720888009937" duration="5758000" />
+      <workItem from="1720888009937" duration="6366000" />
     </task>
     <servers />
   </component>
