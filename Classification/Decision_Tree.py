@@ -2,11 +2,16 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
-from sklearn.cluster import OPTICS
-from sklearn.metrics import silhouette_score,davies_bouldin_score
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, classification_report, precision_score, recall_score, roc_auc_score, roc_curve
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+
+
 
 churn_dataa = pd.read_csv('Churn_Modelling.csv')
 churn_data = churn_dataa.drop(columns=['RowNumber','CustomerId','Surname'])
+customer_ID = churn_dataa['CustomerId']
+
 #Display all the collumn
 pd.set_option('display.max_columns',None)
 print(churn_data.head())
@@ -17,8 +22,8 @@ print(churn_data.dtypes)
 #modify Data type
 
 
-churn_data['IsActiveMember']=churn_data['IsActiveMember'].astype('category')
-churn_data['Exited']=churn_data['Exited'].astype('category')
+# churn_data['IsActiveMember']=churn_data['IsActiveMember'].astype('category')
+# churn_data['Exited']=churn_data['Exited'].astype('category')
 
 #Handling Duplicate Data
 duplicate=churn_data.duplicated()
@@ -62,8 +67,7 @@ def remove_outlier(df, treshhold = 1.5):
 
 churn_data_filtered = remove_outlier(churn_data)
 
-# to Retrive the Customer ID to define each customer cluster
-customer_ids = churn_dataa.loc[churn_dataa.index.isin(churn_data_filtered.index), 'CustomerId']
+customer_ID = customer_ID[churn_data_filtered.index]
 
 number_of_Rows= churn_data_filtered.shape[0]
 print(f'number of Rows are:{number_of_Rows}')
@@ -79,30 +83,75 @@ numeric_column = ['CreditScore','Age','Tenure','Balance','NumOfProducts','Estima
 churn_data_filtered_encoded[numeric_column]=scaler.fit_transform(churn_data_filtered_encoded[numeric_column])
 print(churn_data_filtered_encoded)
 
-column_to_drop = ['GEN_Male', 'GEN_Female', 'GEO_Spain', 'GEO_France', 'GEO_Germany', 'Exited']
+column_to_drop = ['GEN_Male', 'GEN_Female', 'GEO_Spain', 'GEO_France', 'GEO_Germany']
 churn_data_filtered_encoded = churn_data_filtered_encoded.drop(columns=column_to_drop)
 print(churn_data_filtered_encoded.columns)
 
-EPS=[.5]
-Minpts= [5,7]
-results= []
-for minpts in Minpts:
-    for eps in EPS:
-        opics= OPTICS(min_samples= minpts, max_eps=eps ,xi = eps  )
-        cluster_label = opics.fit_predict(churn_data_filtered_encoded)
-        cluster_counts = pd.Series(cluster_label).value_counts()
+X = churn_data_filtered_encoded.drop('Exited', axis=1)
+y= churn_data_filtered_encoded["Exited"]
 
-        print(f'EPS: {eps}, MinPts: {minpts}')
-        for cluster_label, count in cluster_counts.items():
-            print(f'Cluster {cluster_label}: {count} customers')
+print('Decision Tree Calssifier using  Gini impurity:')
 
+X_train , X_test, y_train, y_test = train_test_split(X,y, test_size= .2 , random_state= 42 )
+dtree = DecisionTreeClassifier(criterion='gini' ,random_state=42)
+dtree.fit(X_train,y_train)
 
-        results.append({
-            'EPS': eps,
-            'MinPts': minpts,
-            'Cluster_Counts': cluster_counts
-        })
+#prediction
+y_pred= dtree.predict(X_test)
 
+#Evaluation
+accuracy=accuracy_score(y_test,y_pred)
+precision = precision_score(y_test,y_pred)
+recall =recall_score(y_test,y_pred)
+roc_curve_score = roc_auc_score(y_test,y_pred)
+fpr , tpr, treshholds = roc_curve(y_test, y_pred)
 
+print(f'Accuracy is :{round(accuracy,2)}')
+print(f'Recall is :{round(recall,2)}')
+print(f'Precision is :{round(precision,2)}')
+print(f'ROC_curve Coefficient is :{round(roc_curve_score,2)}')
 
+#ROC_curve Graph
+plt.figure(figsize=(8, 6))
+plt.plot(fpr, tpr, color='darkorange', lw=2, label=f'ROC curve (area = {roc_curve_score:.2f})')
+plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
+plt.xlim([0.0, 1.0])
+plt.ylim([0.0, 1.05])
+plt.xlabel('False Positive Rate (1 - Specificity)')
+plt.ylabel('True Positive Rate (Sensitivity)')
+plt.title('ROC Curve :Entropy Method')
+plt.legend(loc="lower right")
+plt.show()
 
+print('Decision Tree Calssifier using  entropy impurity:')
+
+X_train , X_test, y_train, y_test = train_test_split(X,y, test_size= .2 , random_state= 42 )
+dtree = DecisionTreeClassifier(criterion='entropy' ,random_state=42)
+dtree.fit(X_train,y_train)
+
+#prediction
+y_pred= dtree.predict(X_test)
+
+#Evaluation
+accuracy=accuracy_score(y_test,y_pred)
+precision = precision_score(y_test,y_pred)
+recall =recall_score(y_test,y_pred)
+roc_curve_score = roc_auc_score(y_test,y_pred)
+fpr , tpr, treshholds = roc_curve(y_test, y_pred)
+
+print(f'Accuracy is :{round(accuracy,2)}')
+print(f'Recall is :{round(recall,2)}')
+print(f'Precision is :{round(precision,2)}')
+print(f'ROC_curve Coefficient is :{round(roc_curve_score,2)}')
+
+#ROC_curve Graph
+plt.figure(figsize=(8, 6))
+plt.plot(fpr, tpr, color='darkorange', lw=2, label=f'ROC curve (area = {roc_curve_score:.2f})')
+plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
+plt.xlim([0.0, 1.0])
+plt.ylim([0.0, 1.05])
+plt.xlabel('False Positive Rate (1 - Specificity)')
+plt.ylabel('True Positive Rate (Sensitivity)')
+plt.title('ROC Curve :Entropy Method')
+plt.legend(loc="lower right")
+plt.show()

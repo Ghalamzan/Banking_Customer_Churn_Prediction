@@ -4,10 +4,11 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import DBSCAN
-
+from sklearn.metrics import silhouette_score,davies_bouldin_score
 # Load the data
 churn_dataa = pd.read_csv('Churn_Modelling.csv')
 churn_data = churn_dataa.drop(columns=['RowNumber', 'CustomerId', 'Surname'])
+customer_ID = churn_dataa['CustomerId']
 pd.set_option('display.max_columns', None)
 print(churn_data.head())
 print(churn_data.dtypes)
@@ -44,6 +45,9 @@ def remove_outlier(df, treshhold=1.5):
     return df
 
 churn_data_filtered = remove_outlier(churn_data)
+
+customer_ID =customer_ID[churn_data_filtered.index]
+
 print(f'Number of Rows after removing outliers: {churn_data_filtered.shape[0]}')
 
 # Encoding categorical variables
@@ -110,7 +114,7 @@ minPts = 7
 dbscan = DBSCAN(eps=eps, min_samples=minPts)
 cluster_labels = dbscan.fit_predict(churn_data_filtered_encoded)
 churn_data_filtered_encoded['cluster_labels'] = cluster_labels
-
+df_cluster_label =pd.DataFrame(cluster_labels, columns= ["cluster"])
 # Identify core points
 core_points = np.zeros_like(cluster_labels, dtype=bool)
 core_points[dbscan.core_sample_indices_] = True
@@ -144,3 +148,11 @@ final_summary = pd.concat([grouped_summary, noise_summary], ignore_index=True)
 # Print the final summary
 print(f'for EPS=1 and Minpts= 7 the final clusters number of core and border points are:\n {final_summary}')
 
+data_with_clusters = pd.concat([customer_ID.reset_index(drop=True), churn_data_filtered_encoded.reset_index(drop=True)], axis=1)
+
+print(data_with_clusters.head())
+
+DBSCAN_silhouet_average = silhouette_score(churn_data_filtered_encoded,cluster_labels)
+print(f'silouet_Average is :\n{round(DBSCAN_silhouet_average,2)}')
+DBSCAN_db_score = davies_bouldin_score(churn_data_filtered_encoded,cluster_labels)
+print(f'Davis Boulding index is :\n{round(DBSCAN_db_score,2)}')

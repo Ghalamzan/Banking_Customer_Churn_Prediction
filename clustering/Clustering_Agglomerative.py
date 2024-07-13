@@ -4,9 +4,11 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import AgglomerativeClustering
 from scipy.cluster.hierarchy import dendrogram,linkage
+from sklearn.metrics import silhouette_score, davies_bouldin_score
 
 churn_dataa = pd.read_csv('Churn_Modelling.csv')
 churn_data = churn_dataa.drop(columns=['RowNumber','CustomerId','Surname'])
+Customer_ID =churn_dataa['CustomerId']
 #Display all the collumn
 pd.set_option('display.max_columns',None)
 print(churn_data.head())
@@ -63,7 +65,8 @@ def remove_outlier(df, treshhold = 1.5):
 churn_data_filtered = remove_outlier(churn_data)
 
 # to Retrive the Customer ID to define each customer cluster
-customer_ids = churn_dataa.loc[churn_dataa.index.isin(churn_data_filtered.index), 'CustomerId']
+customer_ID = Customer_ID[churn_data_filtered.index]
+
 
 number_of_Rows= churn_data_filtered.shape[0]
 print(f'number of Rows are:{number_of_Rows}')
@@ -90,9 +93,19 @@ churn_data_filtered_encoded['cluster']=cluster_label
 cluster_stats = churn_data_filtered_encoded.groupby('cluster').mean().reset_index()
 print(f'Mean of each cluster by Agglomerative method is as follows:\n{(cluster_stats)}')
 
+df_cluster_label = pd.DataFrame(cluster_label, columns=['cluster_labels'])
+data_with_clusters = pd.concat([customer_ID.reset_index(drop=True), churn_data_filtered_encoded.reset_index(drop=True), df_cluster_label], axis=1)
+
 linkage_matrix = linkage(churn_data_filtered_encoded,method="ward")
 dendrogram(linkage_matrix)
 plt.title("Hierachical clustering Dendogram ")
 plt.xlabel('Data point')
 plt.ylabel('Distance')
 plt.show()
+
+print(data_with_clusters.head())
+
+Agg_silhouet_average = silhouette_score(churn_data_filtered_encoded,cluster_label)
+print(f'silouet_Average is :\n{round(Agg_silhouet_average,2)}')
+Agg_db_score = davies_bouldin_score(churn_data_filtered_encoded,cluster_label)
+print(f'db score is :\n {round(Agg_db_score,2)}')

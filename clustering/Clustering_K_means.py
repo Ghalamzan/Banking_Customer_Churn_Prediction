@@ -64,10 +64,11 @@ def remove_outlier(df, treshhold = 1.5):
         return(churn_removed_outlier)
 
 churn_data_filtered = remove_outlier(churn_data)
-customer_ID=customer_ID[churn_data_filtered.index]
-customer_ids = churn_dataa.loc[churn_dataa.index.isin(churn_data_filtered.index), 'CustomerId']
+
+
 # to Retrive the Customer ID to define each customer cluster
-customer_ids = churn_dataa.loc[churn_dataa.index.isin(churn_data_filtered.index), 'CustomerId']
+
+customer_ID=customer_ID[churn_data_filtered.index]
 
 number_of_Rows= churn_data_filtered.shape[0]
 print(f'number of Rows are:{number_of_Rows}')
@@ -114,10 +115,12 @@ print(f'cluster Mean is as follows:\n{Cluster_mean}')
 Cluster_Number_of_Customer = data_with_clusters.groupby('cluster').count()
 print(f'number of customer in each cluster is:\n {Cluster_Number_of_Customer}')
 
-silhouet_average = silhouette_score(churn_data_filtered_encoded,cluste_label)
-print(f'silouet_Average is :\n{round(silhouet_average,2)}')
-db_score = davies_bouldin_score(churn_data_filtered_encoded,cluste_label)
-print(f'Davis Boulding index is :\n{round(db_score,2)}')
-
 print(data_with_clusters.head())
+
+kmeans_silhouet_average = silhouette_score(churn_data_filtered_encoded,cluste_label)
+print(f'kmeans silouet_Average is :\n{round(kmeans_silhouet_average,2)}')
+kmeans_db_score = davies_bouldin_score(churn_data_filtered_encoded,cluste_label)
+print(f'Davis Boulding index is :\n{round(kmeans_db_score,2)}')
+
+
 
