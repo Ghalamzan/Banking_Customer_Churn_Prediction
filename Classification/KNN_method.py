@@ -3,9 +3,8 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, precision_score, recall_score, roc_auc_score, roc_curve
-from sklearn.tree import DecisionTreeClassifier, plot_tree
-
+from sklearn.metrics import accuracy_score, precision_score, recall_score, roc_auc_score, roc_curve , f1_score
+from sklearn.neighbors import KNeighborsClassifier
 
 
 churn_dataa = pd.read_csv('Churn_Modelling.csv')
@@ -90,68 +89,32 @@ print(churn_data_filtered_encoded.columns)
 X = churn_data_filtered_encoded.drop('Exited', axis=1)
 y= churn_data_filtered_encoded["Exited"]
 
-print('Decision Tree Calssifier using  Gini impurity:')
-
+#KNN Classifier
 X_train , X_test, y_train, y_test = train_test_split(X,y, test_size= .2 , random_state= 42 )
-dtree = DecisionTreeClassifier(criterion='gini' ,random_state=42)
-dtree.fit(X_train,y_train)
 
-#prediction
-y_pred= dtree.predict(X_test)
+Number_of_neighbour = [4, 7,10]
+Accuracy = {}
+Precision ={}
+Recall = {}
+ROC_Curve ={}
+F_Score ={}
+for k in Number_of_neighbour:
+    knn=KNeighborsClassifier(n_neighbors=k)
+    knn.fit(X_train,y_train)
+    y_predict = knn.predict(X_test)
+    accuracy = accuracy_score(y_test,y_predict)
+    precision= precision_score(y_test,y_predict)
+    recall = recall_score(y_test,y_predict)
+    roc = roc_auc_score(y_test,y_predict)
+    f_Score= f1_score(y_test,y_predict)
+    Accuracy[k]= round(accuracy,2)
+    Precision[k] =round(precision,2)
+    Recall[k] = round(recall,2)
+    ROC_Curve[k]= round(roc,2)
+    F_Score [k]=round(f_Score,2)
 
-#Evaluation
-accuracy=accuracy_score(y_test,y_pred)
-precision = precision_score(y_test,y_pred)
-recall =recall_score(y_test,y_pred)
-roc_curve_score = roc_auc_score(y_test,y_pred)
-fpr , tpr, treshholds = roc_curve(y_test, y_pred)
-
-print(f'Accuracy is :{round(accuracy,2)}')
-print(f'Recall is :{round(recall,2)}')
-print(f'Precision is :{round(precision,2)}')
-print(f'ROC_curve Coefficient is :{round(roc_curve_score,2)}')
-
-#ROC_curve Graph
-plt.figure(figsize=(8, 6))
-plt.plot(fpr, tpr, color='darkorange', lw=2, label=f'ROC curve (area = {roc_curve_score:.2f})')
-plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
-plt.xlim([0.0, 1.0])
-plt.ylim([0.0, 1.05])
-plt.xlabel('False Positive Rate (1 - Specificity)')
-plt.ylabel('True Positive Rate (Sensitivity)')
-plt.title('ROC Curve :Entropy Method')
-plt.legend(loc="lower right")
-plt.show()
-
-print('Decision Tree Calssifier using  entropy impurity:')
-
-X_train , X_test, y_train, y_test = train_test_split(X,y, test_size= .2 , random_state= 42 )
-dtree = DecisionTreeClassifier(criterion='entropy' ,random_state=42)
-dtree.fit(X_train,y_train)
-
-#prediction
-y_pred= dtree.predict(X_test)
-
-#Evaluation
-accuracy=accuracy_score(y_test,y_pred)
-precision = precision_score(y_test,y_pred)
-recall =recall_score(y_test,y_pred)
-roc_curve_score = roc_auc_score(y_test,y_pred)
-fpr , tpr, treshholds = roc_curve(y_test, y_pred)
-
-print(f'Accuracy is :{round(accuracy,2)}')
-print(f'Recall is :{round(recall,2)}')
-print(f'Precision is :{round(precision,2)}')
-print(f'ROC_curve Coefficient is :{round(roc_curve_score,2)}')
-
-#ROC_curve Graph
-plt.figure(figsize=(8, 6))
-plt.plot(fpr, tpr, color='darkorange', lw=2, label=f'ROC curve (area = {roc_curve_score:.2f})')
-plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
-plt.xlim([0.0, 1.0])
-plt.ylim([0.0, 1.05])
-plt.xlabel('False Positive Rate (1 - Specificity)')
-plt.ylabel('True Positive Rate (Sensitivity)')
-plt.title('ROC Curve :Entropy Method')
-plt.legend(loc="lower right")
-plt.show()
+print(f'Accuracy is :\n {Accuracy}')
+print(f'Precision is :\n {{4: {Precision[4]}, 7: {Precision[7]}, 10: {Precision[10]}}}')
+print(f'Recall is :\n {{4: {Recall[4]}, 7: {Recall[7]}, 10: {Recall[10]}}}')
+print(f'ROC_Curve is :\n {{4: {ROC_Curve[4]}, 7: {ROC_Curve[7]}, 10: {ROC_Curve[10]}}}')
+print(f'F_Score is :\n {{4: {F_Score[4]}, 7: {F_Score[7]}, 10: {F_Score[10]}}}')
