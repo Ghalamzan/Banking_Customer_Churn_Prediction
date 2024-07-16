@@ -62,7 +62,7 @@ The OPTICS method was found unsuitable as it allocated most objects to a single 
 
 ## Sample Image
 
-![This is a sample caption](image/images.png)
+![This is a sample caption](image/lfd_ucl1.png)
 
 ## Classification Methods
 
