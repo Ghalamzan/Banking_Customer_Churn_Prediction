@@ -5,17 +5,21 @@ In the banking sector, customer churn can lead to a significant revenue loss of 
 ## Repository Structure
 
 ```sh
-│
 ├── Classification
-│   └── (files related to classification tasks)
+│   ├── Decision_Tree.py
+│   ├── Support_Vector_Machine.py
+│   ├── Naive_Bayes.py
+│   └── K_Nearest_Neighbors.py
 ├── clustering
-│   └──
-│   └──
-│   └──   
+│   ├── Kmeans
+│   ├── Agglomerative
+│   ├── DBSCAN
+│   └── OPTICS
+├── Data_Analytics
+│   ├── Data_Preprocessing.py
+│   └── statistics_analysis.py
 ├── Churn_Modelling.csv
-├── Data_Preprocessing.py
 ├── README.md
-└── statistics_analysis.py
 ```
 
 
