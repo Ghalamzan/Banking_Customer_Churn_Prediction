@@ -3,19 +3,22 @@
 In the banking sector, customer churn can lead to a significant revenue loss of around 30–40%. This study aims to predict customer churn by analyzing banking customer behavior using clustering and classification techniques, providing insights that can help minimize churn.
 
 ## Repository Structure
+
+```sh
 ├── .idea
-│ └── (files related to your IDE configuration)
+│   └── (files related to your IDE configuration)
 ├── Classification
-│ └── (files related to classification tasks)
+│   └── (files related to classification tasks)
 ├── clustering
-│ └── (files related to clustering tasks)
+│   └── (files related to clustering tasks)
 ├── git
-│ └── (files related to git configuration or utilities)
+│   └── (files related to git configuration or utilities)
 ├── .gitignore
 ├── Churn_Modelling.csv
 ├── Data_Preprocessing.py
 ├── README.md
 └── statistics_analysis.py
+```
 
 
 
