@@ -66,7 +66,7 @@ The OPTICS method was found unsuitable as it allocated most objects to a single 
 
 ## Sample Image
 
-![This is a sample caption](Images/Elbow.png)
+![Elbow Graph](Images/Elbow.png)
 
 ## Classification Methods
 
