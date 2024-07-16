@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, precision_score, recall_score, roc_auc_score, roc_curve
+from sklearn.metrics import f1_score,accuracy_score, precision_score, recall_score, roc_auc_score, roc_curve
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 
 
@@ -96,6 +96,11 @@ X_train , X_test, y_train, y_test = train_test_split(X,y, test_size= .2 , random
 dtree = DecisionTreeClassifier(criterion='gini' ,random_state=42)
 dtree.fit(X_train,y_train)
 
+# Get feature importance
+feature_importance = dtree.feature_importances_
+print("feature importance is as follows:")
+for feature_name , feature_importanc in zip(X.columns , feature_importance):
+    print(f'{feature_name} : {round(feature_importanc,2)} ')
 #prediction
 y_pred= dtree.predict(X_test)
 
@@ -105,11 +110,13 @@ precision = precision_score(y_test,y_pred)
 recall =recall_score(y_test,y_pred)
 roc_curve_score = roc_auc_score(y_test,y_pred)
 fpr , tpr, treshholds = roc_curve(y_test, y_pred)
+f_score =f1_score(y_test,y_pred)
 
 print(f'Accuracy is :{round(accuracy,2)}')
 print(f'Recall is :{round(recall,2)}')
 print(f'Precision is :{round(precision,2)}')
 print(f'ROC_curve Coefficient is :{round(roc_curve_score,2)}')
+print(f'f_score Coefficient is :{round(f_score,2)}')
 
 #ROC_curve Graph
 plt.figure(figsize=(8, 6))
@@ -129,6 +136,12 @@ X_train , X_test, y_train, y_test = train_test_split(X,y, test_size= .2 , random
 dtree = DecisionTreeClassifier(criterion='entropy' ,random_state=42)
 dtree.fit(X_train,y_train)
 
+# Get feature importance
+feature_importance = dtree.feature_importances_
+print("feature importance is as follows:")
+for feature_name , feature_importanc in zip(X.columns , feature_importance):
+    print(f'{feature_name} : {round(feature_importanc,2)} ')
+
 #prediction
 y_pred= dtree.predict(X_test)
 
@@ -138,11 +151,13 @@ precision = precision_score(y_test,y_pred)
 recall =recall_score(y_test,y_pred)
 roc_curve_score = roc_auc_score(y_test,y_pred)
 fpr , tpr, treshholds = roc_curve(y_test, y_pred)
+f_score =f1_score(y_test,y_pred)
 
 print(f'Accuracy is :{round(accuracy,2)}')
 print(f'Recall is :{round(recall,2)}')
 print(f'Precision is :{round(precision,2)}')
 print(f'ROC_curve Coefficient is :{round(roc_curve_score,2)}')
+print(f'f_score Coefficient is :{round(f_score,2)}')
 
 #ROC_curve Graph
 plt.figure(figsize=(8, 6))

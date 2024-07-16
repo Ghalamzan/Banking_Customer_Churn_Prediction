@@ -2,12 +2,16 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay,accuracy_score, precision_score, recall_score, roc_auc_score, roc_curve , f1_score
+from sklearn.naive_bayes import GaussianNB
 import seaborn as sns
 
 
 churn_dataa = pd.read_csv('Churn_Modelling.csv')
-
 churn_data = churn_dataa.drop(columns=['RowNumber','CustomerId','Surname'])
+customer_ID = churn_dataa['CustomerId']
+
 #Display all the collumn
 pd.set_option('display.max_columns',None)
 print(churn_data.head())
@@ -18,8 +22,8 @@ print(churn_data.dtypes)
 #modify Data type
 
 
-churn_data['IsActiveMember']=churn_data['IsActiveMember'].astype('category')
-churn_data['Exited']=churn_data['Exited'].astype('category')
+# churn_data['IsActiveMember']=churn_data['IsActiveMember'].astype('category')
+# churn_data['Exited']=churn_data['Exited'].astype('category')
 
 #Handling Duplicate Data
 duplicate=churn_data.duplicated()
@@ -63,6 +67,8 @@ def remove_outlier(df, treshhold = 1.5):
 
 churn_data_filtered = remove_outlier(churn_data)
 
+customer_ID = customer_ID[churn_data_filtered.index]
+
 number_of_Rows= churn_data_filtered.shape[0]
 print(f'number of Rows are:{number_of_Rows}')
 
@@ -77,18 +83,37 @@ numeric_column = ['CreditScore','Age','Tenure','Balance','NumOfProducts','Estima
 churn_data_filtered_encoded[numeric_column]=scaler.fit_transform(churn_data_filtered_encoded[numeric_column])
 print(churn_data_filtered_encoded)
 
-column_to_drop = ['GEN_Male', 'GEN_Female', 'GEO_Spain', 'GEO_France', 'GEO_Germany', 'Exited']
+column_to_drop = ['GEN_Male', 'GEN_Female', 'GEO_Spain', 'GEO_France', 'GEO_Germany']
 churn_data_filtered_encoded = churn_data_filtered_encoded.drop(columns=column_to_drop)
 print(churn_data_filtered_encoded.columns)
 
-num_rows =churn_data_filtered_encoded.shape[0]
-print(num_rows)
+X = churn_data_filtered_encoded.drop('Exited', axis=1)
+y= churn_data_filtered_encoded["Exited"]
 
-# Correlation Heatmap for Ratio Variables
-Cor_Matrix = churn_data_filtered_encoded[numeric_column].corr()
-plt.figure(figsize=(10, 8))
-sns.heatmap(Cor_Matrix, annot=True, fmt='.2f', cmap='coolwarm', linewidths=0.5)
-plt.title('Correlation Heatmap of Ratio Variables')
+# Naive_Based Classifier
+X_train , X_test, y_train, y_test = train_test_split(X,y, test_size= .2 , random_state= 42 )
+
+nb_classifier= GaussianNB()
+nb_classifier.fit(X_train,y_train)
+y_pred = nb_classifier.predict(X_test)
+cm=confusion_matrix(y_test,y_pred)
+sns.heatmap(cm,annot=True,fmt='d',cmap='Blues')
+plt.xlabel('predict')
+plt.ylabel('Atcual')
+plt.title('Confusion Matrix')
 plt.show()
+#Naive_based method Evaluation
+accuracy = accuracy_score(y_test,y_pred)
+precision= precision_score(y_test,y_pred)
+recall = recall_score(y_test,y_pred)
+roc = roc_auc_score(y_test,y_pred)
+f_Score= f1_score(y_test,y_pred)
+
+
+print(f'Accuracy is :\n {round(accuracy,2)}')
+print(f'Precision is :\n {round(precision,2)}')
+print(f'Recall is :\n {round(recall,2)}')
+print(f'Roc_Curve is :\n {round(roc,2)}')
+print(f'F_Score is :\n {round(f_Score,2)}')
 
 
