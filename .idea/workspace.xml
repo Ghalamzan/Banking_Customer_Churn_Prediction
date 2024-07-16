@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a422db0-5065-4680-9e8a-1926cfed70fa" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Classification/KNN_method.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Classification/Naive_Based.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Classification/Support_Vector_Machine.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classification/Decision_Tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/Classification/Decision_Tree.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classification/KNN_method.py" beforeDir="false" afterPath="$PROJECT_DIR$/Classification/KNN_method.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data_Preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Data_Preprocessing.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +100,8 @@
       <workItem from="1720882803094" duration="5160000" />
       <workItem from="1720888009937" duration="6556000" />
       <workItem from="1720970733579" duration="2614000" />
-      <workItem from="1721046747896" duration="1487000" />
+      <workItem from="1721046747896" duration="12942000" />
+      <workItem from="1721145322460" duration="624000" />
     </task>
     <servers />
   </component>
@@ -116,20 +120,23 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/pythonProject9$statistics_analysis.coverage" NAME="statistics_analysis Coverage Results" MODIFIED="1720979469767" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/pythonProject9$Clustering_K_means.coverage" NAME="Clustering_K_means Coverage Results" MODIFIED="1720888464231" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/clustering" />
+    <SUITE FILE_PATH="coverage/pythonProject9$Clustering_K_means.coverage" NAME="Clustering_K_means Coverage Results" MODIFIED="1721072830040" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/clustering" />
     <SUITE FILE_PATH="coverage/pythonProject9$DBSCAN.coverage" NAME="DBSCAN Coverage Results" MODIFIED="1720702201220" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../pythonProject5" />
     <SUITE FILE_PATH="coverage/pythonProject9$Clustering_method.coverage" NAME="Clustering_method Coverage Results" MODIFIED="1720626145842" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/pythonProject9$Hangman.coverage" NAME="Hangman Coverage Results" MODIFIED="1720559832090" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../pythonProject10" />
-    <SUITE FILE_PATH="coverage/pythonProject9$KNN_method.coverage" NAME="KNN_method Coverage Results" MODIFIED="1721048198137" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Classification" />
+    <SUITE FILE_PATH="coverage/pythonProject9$Data_Preprocessing.coverage" NAME="Data_Preprocessing Coverage Results" MODIFIED="1721074560804" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/pythonProject9$KNN_method.coverage" NAME="KNN_method Coverage Results" MODIFIED="1721073440330" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Classification" />
     <SUITE FILE_PATH="coverage/pythonProject9$Cleaning_Data.coverage" NAME="Cleaning_Data Coverage Results" MODIFIED="1720622763047" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/pythonProject9$Clustering_Agglomerative.coverage" NAME="Clustering_Agglomerative Coverage Results" MODIFIED="1720888290392" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/clustering" />
+    <SUITE FILE_PATH="coverage/pythonProject9$Clustering_Agglomerative.coverage" NAME="Clustering_Agglomerative Coverage Results" MODIFIED="1721072745671" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/clustering" />
     <SUITE FILE_PATH="coverage/pythonProject9$Clustering_methods.coverage" NAME="Clustering_methods Coverage Results" MODIFIED="1720694367275" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/pythonProject9$new.coverage" NAME="new Coverage Results" MODIFIED="1720720000494" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/pythonProject9$me.coverage" NAME="me Coverage Results" MODIFIED="1720888264108" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/clustering" />
-    <SUITE FILE_PATH="coverage/pythonProject9$Decision_Tree.coverage" NAME="Decision_Tree Coverage Results" MODIFIED="1720893959763" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Classification" />
-    <SUITE FILE_PATH="coverage/pythonProject9$Clustering_DBSCAN.coverage" NAME="Clustering_DBSCAN Coverage Results" MODIFIED="1720886907622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/clustering" />
+    <SUITE FILE_PATH="coverage/pythonProject9$Decision_Tree.coverage" NAME="Decision_Tree Coverage Results" MODIFIED="1721075014666" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Classification" />
+    <SUITE FILE_PATH="coverage/pythonProject9$Clustering_DBSCAN.coverage" NAME="Clustering_DBSCAN Coverage Results" MODIFIED="1721072978854" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/clustering" />
     <SUITE FILE_PATH="coverage/pythonProject9$main.coverage" NAME="main Coverage Results" MODIFIED="1720205098820" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/pythonProject9$Clustering_Optic.coverage" NAME="Clustering_Optic Coverage Results" MODIFIED="1720887511212" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/clustering" />
     <SUITE FILE_PATH="coverage/pythonProject9$compare_metrics.coverage" NAME="compare_metrics Coverage Results" MODIFIED="1720888030991" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/clustering" />
+    <SUITE FILE_PATH="coverage/pythonProject9$Support_Vector_Machine.coverage" NAME="Support_Vector_Machine Coverage Results" MODIFIED="1721063789464" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Classification" />
+    <SUITE FILE_PATH="coverage/pythonProject9$Clustering_Optic.coverage" NAME="Clustering_Optic Coverage Results" MODIFIED="1721073034147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/clustering" />
+    <SUITE FILE_PATH="coverage/pythonProject9$Naive_Based.coverage" NAME="Naive_Based Coverage Results" MODIFIED="1721073482043" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Classification" />
   </component>
 </project>

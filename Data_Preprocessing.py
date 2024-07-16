@@ -2,11 +2,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
-from sklearn.cluster import KMeans
-# import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 churn_dataa = pd.read_csv('Churn_Modelling.csv')
+
 churn_data = churn_dataa.drop(columns=['RowNumber','CustomerId','Surname'])
 #Display all the collumn
 pd.set_option('display.max_columns',None)
@@ -80,3 +80,15 @@ print(churn_data_filtered_encoded)
 column_to_drop = ['GEN_Male', 'GEN_Female', 'GEO_Spain', 'GEO_France', 'GEO_Germany', 'Exited']
 churn_data_filtered_encoded = churn_data_filtered_encoded.drop(columns=column_to_drop)
 print(churn_data_filtered_encoded.columns)
+
+num_rows =churn_data_filtered_encoded.shape[0]
+print(num_rows)
+
+# Correlation Heatmap for Ratio Variables
+Cor_Matrix = churn_data_filtered_encoded[numeric_column].corr()
+plt.figure(figsize=(10, 8))
+sns.heatmap(Cor_Matrix, annot=True, fmt='.2f', cmap='coolwarm', linewidths=0.5)
+plt.title('Correlation Heatmap of Ratio Variables')
+plt.show()
+
+

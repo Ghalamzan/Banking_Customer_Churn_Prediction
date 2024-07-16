@@ -3,9 +3,9 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import f1_score,accuracy_score, precision_score, recall_score, roc_auc_score, roc_curve
-from sklearn.tree import DecisionTreeClassifier, plot_tree
-
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay,accuracy_score, precision_score, recall_score, roc_auc_score, roc_curve , f1_score
+from sklearn.naive_bayes import GaussianNB
+import seaborn as sns
 
 
 churn_dataa = pd.read_csv('Churn_Modelling.csv')
@@ -90,83 +90,30 @@ print(churn_data_filtered_encoded.columns)
 X = churn_data_filtered_encoded.drop('Exited', axis=1)
 y= churn_data_filtered_encoded["Exited"]
 
-print('Decision Tree Calssifier using  Gini impurity:')
-
+# Naive_Based Classifier
 X_train , X_test, y_train, y_test = train_test_split(X,y, test_size= .2 , random_state= 42 )
-dtree = DecisionTreeClassifier(criterion='gini' ,random_state=42)
-dtree.fit(X_train,y_train)
 
-# Get feature importance
-feature_importance = dtree.feature_importances_
-print("feature importance is as follows:")
-for feature_name , feature_importanc in zip(X.columns , feature_importance):
-    print(f'{feature_name} : {round(feature_importanc,2)} ')
-#prediction
-y_pred= dtree.predict(X_test)
-
-#Evaluation
-accuracy=accuracy_score(y_test,y_pred)
-precision = precision_score(y_test,y_pred)
-recall =recall_score(y_test,y_pred)
-roc_curve_score = roc_auc_score(y_test,y_pred)
-fpr , tpr, treshholds = roc_curve(y_test, y_pred)
-f_score =f1_score(y_test,y_pred)
-
-print(f'Accuracy is :{round(accuracy,2)}')
-print(f'Recall is :{round(recall,2)}')
-print(f'Precision is :{round(precision,2)}')
-print(f'ROC_curve Coefficient is :{round(roc_curve_score,2)}')
-print(f'f_score Coefficient is :{round(f_score,2)}')
-
-#ROC_curve Graph
-plt.figure(figsize=(8, 6))
-plt.plot(fpr, tpr, color='darkorange', lw=2, label=f'ROC curve (area = {roc_curve_score:.2f})')
-plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
-plt.xlim([0.0, 1.0])
-plt.ylim([0.0, 1.05])
-plt.xlabel('False Positive Rate (1 - Specificity)')
-plt.ylabel('True Positive Rate (Sensitivity)')
-plt.title('ROC Curve :Entropy Method')
-plt.legend(loc="lower right")
+nb_classifier= GaussianNB()
+nb_classifier.fit(X_train,y_train)
+y_pred = nb_classifier.predict(X_test)
+cm=confusion_matrix(y_test,y_pred)
+sns.heatmap(cm,annot=True,fmt='d',cmap='Blues')
+plt.xlabel('predict')
+plt.ylabel('Atcual')
+plt.title('Confusion Matrix')
 plt.show()
+#Naive_based method Evaluation
+accuracy = accuracy_score(y_test,y_pred)
+precision= precision_score(y_test,y_pred)
+recall = recall_score(y_test,y_pred)
+roc = roc_auc_score(y_test,y_pred)
+f_Score= f1_score(y_test,y_pred)
 
-print('Decision Tree Calssifier using  entropy impurity:')
 
-X_train , X_test, y_train, y_test = train_test_split(X,y, test_size= .2 , random_state= 42 )
-dtree = DecisionTreeClassifier(criterion='entropy' ,random_state=42)
-dtree.fit(X_train,y_train)
+print(f'Accuracy is :\n {round(accuracy,2)}')
+print(f'Precision is :\n {round(precision,2)}')
+print(f'Recall is :\n {round(recall,2)}')
+print(f'Roc_Curve is :\n {round(roc,2)}')
+print(f'F_Score is :\n {round(f_Score,2)}')
 
-# Get feature importance
-feature_importance = dtree.feature_importances_
-print("feature importance is as follows:")
-for feature_name , feature_importanc in zip(X.columns , feature_importance):
-    print(f'{feature_name} : {round(feature_importanc,2)} ')
 
-#prediction
-y_pred= dtree.predict(X_test)
-
-#Evaluation
-accuracy=accuracy_score(y_test,y_pred)
-precision = precision_score(y_test,y_pred)
-recall =recall_score(y_test,y_pred)
-roc_curve_score = roc_auc_score(y_test,y_pred)
-fpr , tpr, treshholds = roc_curve(y_test, y_pred)
-f_score =f1_score(y_test,y_pred)
-
-print(f'Accuracy is :{round(accuracy,2)}')
-print(f'Recall is :{round(recall,2)}')
-print(f'Precision is :{round(precision,2)}')
-print(f'ROC_curve Coefficient is :{round(roc_curve_score,2)}')
-print(f'f_score Coefficient is :{round(f_score,2)}')
-
-#ROC_curve Graph
-plt.figure(figsize=(8, 6))
-plt.plot(fpr, tpr, color='darkorange', lw=2, label=f'ROC curve (area = {roc_curve_score:.2f})')
-plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
-plt.xlim([0.0, 1.0])
-plt.ylim([0.0, 1.05])
-plt.xlabel('False Positive Rate (1 - Specificity)')
-plt.ylabel('True Positive Rate (Sensitivity)')
-plt.title('ROC Curve :Entropy Method')
-plt.legend(loc="lower right")
-plt.show()
