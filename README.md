@@ -5,15 +5,13 @@ In the banking sector, customer churn can lead to a significant revenue loss of 
 ## Repository Structure
 
 ```sh
-├── .idea
-│   └── (files related to your IDE configuration)
+│
 ├── Classification
 │   └── (files related to classification tasks)
 ├── clustering
-│   └── (files related to clustering tasks)
-├── git
-│   └── (files related to git configuration or utilities)
-├── .gitignore
+│   └──
+│   └──
+│   └──   
 ├── Churn_Modelling.csv
 ├── Data_Preprocessing.py
 ├── README.md
@@ -61,6 +59,10 @@ Various clustering methods were used to categorize customers:
 - OPTICS
 
 The OPTICS method was found unsuitable as it allocated most objects to a single cluster. The Agglomerative method was preferred based on the Silhouette Score and Davies-Bouldin Index.
+
+## Sample Image
+
+![This is a sample caption](image/images.png)
 
 ## Classification Methods
 
