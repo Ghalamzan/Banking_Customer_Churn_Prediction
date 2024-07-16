@@ -1,28 +1,45 @@
 # Customer Churn Prediction in Banking
 
-In the context of banking systems, where customer churn can lead to a potential loss of around 30–40% of revenues and margin erosion, this study delves into banking customer behavior. It employs clustering and classification techniques to predict churn, aiming to facilitate in-depth analysis and future initiatives aimed at minimizing churn.
+In the banking sector, customer churn can lead to a significant revenue loss of around 30–40%. This study aims to predict customer churn by analyzing banking customer behavior using clustering and classification techniques, providing insights that can help minimize churn.
+
+## Repository Structure
+├── .idea
+│ └── (files related to your IDE configuration)
+├── Classification
+│ └── (files related to classification tasks)
+├── clustering
+│ └── (files related to clustering tasks)
+├── git
+│ └── (files related to git configuration or utilities)
+├── .gitignore
+├── Churn_Modelling.csv
+├── Data_Preprocessing.py
+├── README.md
+└── statistics_analysis.py
+
+
 
 ## Dataset
 
-The dataset used in this study is available in the GitHub repository under the name `Churn_Modeling.CSV`. This dataset, sourced from Kaggle, includes a total of 10,027 entries. After addressing missing and duplicate values, 9,985 observations were considered post-outlier handling.
+The dataset used in this study is available in the repository as `Churn_Modelling.csv`. Sourced from Kaggle, it includes 10,027 entries. After addressing missing and duplicate values, 9,985 observations were used post-outlier handling.
 
 ## Data Preprocessing
 
-- **Handling Missing and Duplicate Values**: Missing values were filled, and duplicates were removed.
-- **Outlier Handling**: Outliers were addressed to ensure data quality.
-- **Correlation Analysis**: Pairwise Pearson correlation showed no significant associations among numerical variables.
-- **Standardization**: Z-score standardization was employed for data scalability.
+- **Handling Missing and Duplicate Values**: Filled missing values and removed duplicates.
+- **Outlier Handling**: Addressed outliers to ensure data quality.
+- **Correlation Analysis**: Conducted pairwise Pearson correlation, finding no significant associations among numerical variables.
+- **Standardization**: Applied Z-score standardization for data scalability.
 
 ## Features
 
-The study focuses on two key attribute sets derived from literature:
+The study focuses on two key sets of attributes derived from literature:
 
-### Demographic Attributes:
+### Demographic Attributes
 
 - Age
 - Estimated Salary
 
-### Banking Engagement Attributes:
+### Banking Engagement Attributes
 
 - Tenure
 - Balance
@@ -33,29 +50,29 @@ The study focuses on two key attribute sets derived from literature:
 
 ## Clustering Methods
 
-To categorize customers into distinct groups, various clustering methods were employed:
+Various clustering methods were used to categorize customers:
 
 - k-means
 - PAM
 - DBSCAN
 - OPTICS
 
-The application of OPTICS revealed its unsuitability for the dataset, as the majority of objects were allocated to a single cluster. Based on the Silhouette Score and Davies-Bouldin Index, the Agglomerative method was favored over k-means and DBSCAN.
+The OPTICS method was found unsuitable as it allocated most objects to a single cluster. The Agglomerative method was preferred based on the Silhouette Score and Davies-Bouldin Index.
 
 ## Classification Methods
 
-In the classification task, the following methods were compared:
+For predicting churn, the following classification methods were compared:
 
 - Decision Tree
 - K-Nearest Neighbors (KNN)
 - Naïve Bayes
 
-The decision tree outperformed KNN and Naïve Bayes in predicting churn based on F1 Score and ROC AUC. The most important features in classifying customer churn were Age, Balance, and Estimated Salary.
+The decision tree outperformed KNN and Naïve Bayes in predicting churn, with the most important features being Age, Balance, and Estimated Salary.
 
 ## Results
 
-- **Clustering**: The Agglomerative method was found to be the most effective based on the Silhouette Score and Davies-Bouldin Index.
-- **Classification**: The decision tree provided the best performance in predicting churn, with Age, Balance, and Estimated Salary being the most influential features.
+- **Clustering**: The Agglomerative method was the most effective based on the Silhouette Score and Davies-Bouldin Index.
+- **Classification**: The decision tree provided the best performance, with Age, Balance, and Estimated Salary being the most influential features.
 
 ## Usage
 
@@ -76,11 +93,10 @@ To use this project, follow these steps:
 
 ## Conclusion
 
-This study provides insights into banking customer behavior using clustering and classification techniques. The findings can be used to implement strategies aimed at minimizing customer churn, thereby reducing potential revenue loss and margin erosion.
-
+This study provides insights into banking customer behaviour using clustering and classification techniques. The findings can help implement strategies to minimize customer churn, reducing potential revenue loss and margin erosion.
 
 ## Contributing
 
-Feel free to contribute to this project by opening issues or submitting pull requests.
+Contributions are welcome! Feel free to open issues or submit pull requests.
 
-For more information, please contact `ghalamzan6286@gmail.com`.
+For more information, please contact [ghalamzan6286@gmail.com](mailto:ghalamzan6286@gmail.com).
