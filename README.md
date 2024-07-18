@@ -64,9 +64,8 @@ Various clustering methods were used to categorize customers:
 
 The OPTICS method was found unsuitable as it allocated most objects to a single cluster. The Agglomerative method was preferred based on the Silhouette Score and Davies-Bouldin Index.
 
-## Sample Image
-
-![Elbow Graph](Images/Elbow.png)
+## Sample results
+![This is an Elbow Graph of the model training. ](Images/Elbow.png)
 
 ## Classification Methods
 
