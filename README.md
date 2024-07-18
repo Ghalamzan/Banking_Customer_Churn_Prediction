@@ -67,6 +67,8 @@ The OPTICS method was found unsuitable as it allocated most objects to a single 
 ## Sample results
 ![This is an Elbow Graph of the model training. ](Images/Elbow.png)
 
+This is an Elbow Graph of the model training.
+
 ## Classification Methods
 
 For predicting churn, the following classification methods were compared:
